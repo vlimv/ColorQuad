@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dark_wall">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ht_fragment2_t1"
+        android:id="@+id/text_1"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="15dp"
+        android:visibility="invisible"
+        android:layout_marginEnd="15dp"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:textColor="@color/pochti_white"
+        android:layout_centerHorizontal="true"/>
+
+    <TableLayout
+        android:layout_width="102dp"
+        android:layout_height="102dp"
+        android:layout_below="@id/text_1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:id="@+id/table_layout"
+        android:layout_marginEnd="20dp"
+        android:visibility="invisible"
+        android:layout_marginTop="15dp">
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:id="@+id/button00"
+            android:layout_column="0" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/rectangle"
+            android:clickable="false"
+            android:layout_weight="1"
+            android:id="@+id/button_top"
+            android:adjustViewBounds="true"
+            android:layout_column="0" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:id="@+id/button02"
+            android:layout_column="0" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rectangle"
+            android:id="@+id/button_left"
+            android:layout_column="0" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/orange"
+            android:src="@drawable/rectangle_not_solid"
+            android:layout_weight="1"
+            android:id="@+id/button_center"
+            android:adjustViewBounds="true"
+            android:layout_column="0" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/rectangle"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:id="@+id/button_right"
+            android:layout_column="0" />
+    </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:id="@+id/button20"
+                android:layout_column="0" />
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/rectangle"
+                android:clickable="false"
+                android:layout_weight="1"
+                android:id="@+id/button_bottom"
+                android:adjustViewBounds="true"
+                android:layout_column="0" />
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:id="@+id/button22"
+                android:layout_column="0" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ht_fragment2_t2"
+        android:id="@+id/text_2"
+        android:layout_below="@id/table_layout"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:visibility="invisible"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:textColor="@color/pochti_white"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ht_fragment2_t3"
+        android:id="@+id/text_3"
+        android:layout_below="@id/text_2"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:visibility="invisible"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:textColor="@color/pochti_white"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="@color/pochti_white"
+        android:id="@+id/text_4"
+        android:text="@string/swipe_to_cont"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        />
+
+</RelativeLayout>

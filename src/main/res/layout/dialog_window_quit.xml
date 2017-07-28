@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="160dp">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fullscreen_content"
+        android:src="@drawable/dark_wall"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:id="@+id/a"
+        android:src="@drawable/gradient"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/quit"
+        android:id="@+id/text_quit"
+        android:layout_below="@id/a"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="23sp"
+        android:textColor="@color/yellow"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/text_quit">
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_no"
+            android:background="@color/cyan"
+            android:src="@drawable/no"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_column="0" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_yes"
+            android:background="@color/pink"
+            android:src="@drawable/yes"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:layout_column="0" />
+    </LinearLayout>
+</RelativeLayout>

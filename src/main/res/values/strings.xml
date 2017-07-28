@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">ColorQuad</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_how_to">how_to</string>
+    <string name="greeting">Hello!</string>
+    <string name="intro">Let\'s have some introduction first. Do you know how to mix colors? Have a try with basic colors. For example, mix red and yellow to get orange.</string>
+    <string name="mix_purple">Mix red and blue to get purple.</string>
+    <string name="mix_green">"For green mix yellow and blue."</string>
+    <string name="ht_fragment2_t1">"Your goal is to paint outer sides of crosses, so addition of these colors will result central color."</string>
+    <string name="ht_fragment2_t2">Tap outer squares to change their color.</string>
+    <string name="ht_fragment2_t3">You are right!</string>
+    <string name="level0">"LEVEL 0"</string>
+    <string name="awesome">AWESOME</string>
+    <string name="quit">DO YOU REALLY WANT TO QUIT?</string>
+    <string name="quit_to_menu">DO YOU REALLY WANT TO GO BACK TO MAIN MENU?</string>
+    <string name="ht_fragment3_t1">Try to solve this one colouring as few squares as possible. If you forget how to mix specific color, long press it and hint will appear ;) </string>
+    <string name="ht_fragment3_t2">Well played! I think you are ready to begin... </string>
+    <string name="swipe_to_cont">Swipe right to continue... </string>
+    <string name="teach_brown">I am happy to introduce you brown</string>
+    <string name="teach_pink">Say hello to pink, cyan and light yellow</string>
+    <string name="teach_light">Welcome to the bright side. Here are light orange, light purple and light green</string>
+    <string name="title_activity_choose_level">ChooseLevel</string>
+</resources>

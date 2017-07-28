@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="vlimv.colorquad">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainMenu"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Levels"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".how_to"
+            android:label="@string/title_activity_how_to"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <service
+            android:name=".MusicService"
+            android:enabled="true" />
+
+        <activity
+            android:name=".ChooseLevel"
+            android:label="@string/title_activity_choose_level"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"></activity>
+    </application>
+
+</manifest>

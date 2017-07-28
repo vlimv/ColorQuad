@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="280dp"
+    android:background="@null">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fullscreen_content"
+        android:background="@drawable/dark_wall"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:id="@+id/a"
+        android:src="@drawable/gradient"
+        android:layout_marginTop="15dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:textSize="25sp"
+        android:text="@string/teach_pink"
+        android:layout_below="@id/a"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:id="@+id/text_1"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:src="@drawable/pink"
+        android:layout_below="@id/text_1"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/pink"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:src="@drawable/cyan"
+        android:layout_below="@id/pink"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/cyan"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:src="@drawable/light_yellow"
+        android:layout_below="@id/cyan"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/light_yellow"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@+id/light_yellow"
+        android:layout_marginTop="20dp">
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_no"
+            android:background="@color/cyan"
+            android:src="@drawable/no"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_yes"
+            android:background="@color/pink"
+            android:src="@drawable/yes"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside" />
+    </LinearLayout>
+</RelativeLayout>
