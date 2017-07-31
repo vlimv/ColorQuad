@@ -136,31 +136,54 @@ public class MainMenu extends Game implements View.OnClickListener{
 
     public void onClick(View v) {
         final View vj = v;
-        switch (vj.getId()) {
-            case R.id.button_play:
-                start_play();
-                break;
-            case R.id.button_levels:
-                show_levels();
-                break;
-            case R.id.button_love:
-                show_intro();
-                break;
-            case R.id.button_sound:
-                if (isPlayingMusic) {
-                    isPlayingMusic = false;
-                    saveMusic(false);
-                    mServ.pauseMusic();
-                    button_sound.setImageResource(R.drawable.mute);
-                } else {
-                    mServ.resumeMusic();
-                    isPlayingMusic = true;
-                    saveMusic(true);
-                    button_sound.setImageResource(R.drawable.sound);
+        if (v.getId() != R.id.button_sound) {
+            Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade);
+            anim.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
                 }
-                break;
-            default:
-                break;
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    button_play.setVisibility(View.INVISIBLE);
+                    button_sound.setVisibility(View.INVISIBLE);
+                    button_levels.setVisibility(View.INVISIBLE);
+                    button_love.setVisibility(View.INVISIBLE);
+                    switch (vj.getId()) {
+                        case R.id.button_play:
+                            start_play();
+                            break;
+                        case R.id.button_levels:
+                            show_levels();
+                            break;
+                        case R.id.button_love:
+                            show_intro();
+                            break;
+                    }
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+            button_play.startAnimation(anim);
+            button_sound.startAnimation(anim);
+            button_levels.startAnimation(anim);
+            button_love.startAnimation(anim);
+        } else {
+            if (isPlayingMusic) {
+                isPlayingMusic = false;
+                saveMusic(false);
+                mServ.pauseMusic();
+                button_sound.setImageResource(R.drawable.mute);
+            } else {
+                mServ.resumeMusic();
+                isPlayingMusic = true;
+                saveMusic(true);
+                button_sound.setImageResource(R.drawable.sound);
+            }
         }
     }
 
@@ -217,9 +240,6 @@ public class MainMenu extends Game implements View.OnClickListener{
         continueBGMusic = false;
         playMusic = loadMusic();
         doBindService();
-//        Intent music = new Intent();
-//        music.setClass(this,MusicService.class);
-//        startService(music);
         if (playMusic && mServ!= null){
             isPlayingMusic = true;
             Log.d("fucking music", "hey, mServ is not null");

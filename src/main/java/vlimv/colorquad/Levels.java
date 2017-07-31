@@ -12,11 +12,14 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -24,6 +27,7 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 /**
@@ -79,6 +83,61 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
             }
             dialog.show();
         }
+    }
+    public class Dialog_last_level extends android.app.Dialog {
+        public Dialog_last_level(Activity a, int s) {
+            super(a);
+            numberOfStars = s;
+        }
+        int numberOfStars;
+        ImageView stars[] = new ImageView[3];
+        public void showDialog(Activity activity){
+            final Dialog_last_level dialog = new Dialog_last_level(activity, numberOfStars);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.dialog_window);
+
+            Typeface Marske = Typeface.createFromAsset(getAssets(), "fonts/Marske.ttf");
+            TextView text = (TextView) dialog.findViewById(R.id.text);
+            text.setText(R.string.last_level);
+            text.setTypeface(Marske);
+            stars[0] = (ImageView)dialog.findViewById(R.id.star1);
+            stars[1] = (ImageView)dialog.findViewById(R.id.star2);
+            stars[2] = (ImageView)dialog.findViewById(R.id.star3);
+            ImageButton btn_menu = (ImageButton) dialog.findViewById(R.id.btn_menu);
+            btn_menu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    return_menu();
+                }
+            });
+            ImageButton btn_next = (ImageButton) dialog.findViewById(R.id.btn_next);
+            btn_next.setImageResource(R.drawable.love);
+            btn_next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    show_credits();
+                }
+            });
+            ImageButton btn_again = (ImageButton) dialog.findViewById(R.id.btn_again);
+            btn_again.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    restart();
+                }
+            });
+            for (int i = 0; i < numberOfStars; i++) {
+                stars[i].setVisibility(View.VISIBLE);
+                Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim_stars);
+                stars[i].startAnimation(anim);
+            }
+            dialog.show();
+        }
+    }
+    void show_credits() {
+
     }
 
     void next_btn() {
@@ -295,6 +354,43 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
         }
     }
 
+    public class Dialog_level_36 extends android.app.Dialog {
+        public Dialog_level_36(Activity a, int i) {
+            super(a);
+            id = i;
+        }
+        int id;
+        public void showDialog(Activity activity){
+            final Dialog_level_36 dialog = new Dialog_level_36(activity, id);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(true);
+            dialog.setContentView(R.layout.dialog_window_quit);
+
+            Typeface Marske = Typeface.createFromAsset(getAssets(), "fonts/Marske.ttf");
+            TextView text = (TextView) dialog.findViewById(R.id.text_quit);
+            text.setText(id);
+//            SpannableString text_spannable = new SpannableString(text.getText().toString());
+//            text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff0066")), 13, 17, 0);
+//            text.setText(text_spannable);
+            text.setTypeface(Marske);
+            ImageButton btn_no = (ImageButton) dialog.findViewById(R.id.button_no);
+            btn_no.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    return_menu();
+                }
+            });
+            ImageButton btn_yes = (ImageButton) dialog.findViewById(R.id.button_yes);
+            btn_yes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        }
+    }
     public class Dialog_teach_light extends android.app.Dialog {
         public Dialog_teach_light(Activity a) {
             super(a);
@@ -308,9 +404,7 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
             Typeface Marske = Typeface.createFromAsset(getAssets(), "fonts/Marske.ttf");
             TextView text = (TextView) dialog.findViewById(R.id.text_1);
             SpannableString text_spannable = new SpannableString(text.getText().toString());
-            text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff0066")), 13, 17, 0);
-            text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 19, 23, 0);
-            text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff99")), 28, 40, 0);
+            text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#fc9c3f")), 36, 48, 0);
             text.setText(text_spannable);
             text.setTypeface(Marske);
             ImageButton btn_no = (ImageButton) dialog.findViewById(R.id.button_no);
@@ -331,22 +425,57 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
             dialog.show();
         }
     }
-    ImageButton buttons[][] = new ImageButton[11][9];
-    ImageView hint;
-    int minSteps[] = new int [120];
-    int states[][] = new int[11][9];
-    int sides[] = new int[4];
-    TextView text;
-    RelativeLayout r_layout;
-    ImageButton button_pause, button_question;
+    public class Dialog_teach_other_light extends android.app.Dialog {
+        public Dialog_teach_other_light(Activity a) {
+            super(a);
+        }
+        public void showDialog(Activity activity){
+            final Dialog_teach_other_light dialog = new Dialog_teach_other_light(activity);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(true);
+            dialog.setContentView(R.layout.dialog_teach_other_light);
+
+            Typeface Marske = Typeface.createFromAsset(getAssets(), "fonts/Marske.ttf");
+            TextView text = (TextView) dialog.findViewById(R.id.text);
+            SpannableString text_spannable = new SpannableString(text.getText().toString());
+            text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#bc8bcc")), 23, 35, 0);
+            text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#79ff78")), 40, 51, 0);
+            text.setText(text_spannable);
+            text.setTypeface(Marske);
+            ImageButton btn_no = (ImageButton) dialog.findViewById(R.id.button_no);
+            btn_no.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    return_menu();
+                }
+            });
+            ImageButton btn_yes = (ImageButton) dialog.findViewById(R.id.button_yes);
+            btn_yes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        }
+    }
     static final int MAX_ROWS = 11;
     static final int MAX_COLUMNS = 9;
-
+    static final int NUM_OF_LEVELS = 120;
     int CUR_ROWS = 11;
     int CUR_COLUMNS = 9;
     int CUR_MIDDLE_COLORS = 20;
     int START_ROW = 0;
     int START_COLUMN = 0;
+    ImageButton buttons[][] = new ImageButton[11][9];
+    ImageView hint;
+    int minSteps[] = new int [NUM_OF_LEVELS];
+    int states[][] = new int[11][9];
+    int sides[] = new int[4];
+    TextView text;
+    RelativeLayout r_layout;
+    ImageButton button_pause, button_question;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -458,7 +587,16 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
         minSteps[16] = 11; minSteps[17] = 10; minSteps[18] = 12; minSteps[19] = 12; minSteps[20] = 18;
         minSteps[21] = 17; minSteps[22] = 18; minSteps[23] = 17; minSteps[24] = 17; minSteps[25] = 17;
         minSteps[26] = 16; minSteps[27] = 16; minSteps[28] = 19; minSteps[29] = 17; minSteps[30] = 18;
-        minSteps[31] = 16; minSteps[32] = 16; minSteps[33] = 17; minSteps[34] = 15;
+        minSteps[31] = 16; minSteps[32] = 16; minSteps[33] = 17; minSteps[34] = 15; minSteps[35] = 20;
+        minSteps[36] = 21; minSteps[37] = 22; minSteps[38] = 21; minSteps[39] = 23; minSteps[40] = 20;
+        minSteps[41] = 22; minSteps[42] = 22; minSteps[43] = 20; minSteps[44] = 21; minSteps[45] = 24;
+        minSteps[46] = 21; minSteps[47] = 24; minSteps[48] = 27; minSteps[49] = 26; minSteps[50] = 25;
+        minSteps[51] = 23; minSteps[52] = 23; minSteps[53] = 23; minSteps[54] = 22; minSteps[55] = 25;
+        minSteps[56] = 22; minSteps[57] = 24; minSteps[58] = 24; minSteps[59] = 25; minSteps[60] = 24;
+        minSteps[61] = 25; minSteps[62] = 24; minSteps[63] = 25; minSteps[64] = 26; minSteps[65] = 31;
+        minSteps[66] = 30; minSteps[67] = 31; minSteps[68] = 27; minSteps[69] = 27; minSteps[70] = 30;
+        minSteps[71] = 28; minSteps[72] = 30; minSteps[73] = 29; minSteps[74] = 28; minSteps[75] = 26;
+        minSteps[76] = 30; minSteps[77] = 29; minSteps[78] = 31; minSteps[79] = 28;
         text = (TextView) findViewById(R.id.text_level);
         r_layout = (RelativeLayout)  findViewById(R.id.r_layout);
         button_pause = (ImageButton) findViewById(R.id.button_pause);
@@ -484,14 +622,24 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
         } else if (cur_level == 11) {
             Dialog_teach_pink_and_cyan d = new Dialog_teach_pink_and_cyan(this);
             d.showDialog(this);
+        } else if (cur_level == 36) {
+            Dialog_level_36 d = new Dialog_level_36(this, R.string.text_level_36);
+            d.showDialog(this);
         } else if (cur_level == 46) {
             Dialog_teach_light d = new Dialog_teach_light(this);
+            d.showDialog(this);
+        } else if (cur_level == 48) {
+            Dialog_teach_other_light d = new Dialog_teach_other_light(this);
+            d.showDialog(this);
+        } else if (cur_level == 66) {
+            Dialog_level_36 d = new Dialog_level_36(this, R.string.text_level_66);
             d.showDialog(this);
         }
         if (cur_level <= 40) {
             text.setTextColor(Color.parseColor("#00ccff"));
         } else if (cur_level > 40 && cur_level <= 80) {
             text.setTextColor(Color.parseColor("#ffff00"));
+            button_pause.setBackgroundColor(Color.parseColor("#00ccff"));
         } else if (cur_level > 80 && cur_level <= 120) {
             text.setTextColor(Color.parseColor("#ff0066"));
         }
@@ -517,13 +665,26 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
             START_ROW = 2;
             START_COLUMN = 0;
             build_game_middle();
+        } else if (cur_level <= 65) {
+            CUR_ROWS = 9;
+            CUR_COLUMNS = 9;
+            CUR_MIDDLE_COLORS = 16;
+            START_ROW = 0;
+            START_COLUMN = 0;
+            TableLayout layout = (TableLayout) findViewById(R.id.table_layout);
+            final float GESTURE_THRESHOLD_DP = 50.0f;
+            final float scale = getResources().getDisplayMetrics().density;
+            int mGestureThreshold = (int) (GESTURE_THRESHOLD_DP * scale + 0.5f);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) layout.getLayoutParams();
+            params.topMargin = mGestureThreshold;
+            build_game_hard();
         } else {
             CUR_ROWS = 11;
             CUR_COLUMNS = 9;
             CUR_MIDDLE_COLORS = 20;
             START_ROW = 0;
             START_COLUMN = 0;
-            build_game_hard();
+            build_game_super_hard();
         }
         for (int i = 0; i < MAX_ROWS; i++) {
             for (int j = 0; j < MAX_COLUMNS; j++) {
@@ -543,7 +704,7 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
         }
     }
 
-    public void build_game_beginner() {
+    void build_game_beginner() {
         switch (cur_level) {
             case 1:
                 buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
@@ -577,7 +738,7 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
                 break;
         }
     }
-    public void build_game_easy () {
+    void build_game_easy () {
         switch (cur_level) {
             case 6:
                 buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
@@ -731,7 +892,7 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
                 break;
         }
     }
-    public void build_game_middle () {
+    void build_game_middle () {
         switch (cur_level) {
             case 21:
                 buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
@@ -945,7 +1106,885 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
                 break;
         }
     }
-    public void build_game_hard() {
+    void build_game_hard() {
+        switch (cur_level) {
+            case 36:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                break;
+            case 37:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                break;
+            case 38:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                break;
+            case 39:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                break;
+            case 40:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                break;
+            case 41:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                break;
+            case 42:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                break;
+            case 43:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                break;
+            case 44:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                break;
+            case 45:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                break;
+            case 46:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                break;
+            case 47:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                break;
+            case 48:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                break;
+            case 49:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                break;
+            case 50:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                break;
+            case 51:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                break;
+            case 52:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                break;
+            case 53:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                break;
+            case 54:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                break;
+            case 55:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                break;
+            case 56:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                break;
+            case 57:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                break;
+            case 58:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                break;
+            case 59:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                break;
+            case 60:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                break;
+            case 61:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                break;
+            case 62:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                break;
+            case 63:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                break;
+            case 64:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                break;
+            case 65:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                break;
+        }
+    }
+    void build_game_super_hard() {
+        switch(cur_level) {
+            case 66:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[9][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[9][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[9][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[9][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                break;
+            case 67:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[9][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[9][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[9][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[9][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                break;
+            case 68:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[9][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[9][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[9][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[9][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                break;
+            case 69:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[9][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[9][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[9][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[9][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                break;
+            case 70:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[9][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[9][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[9][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[9][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                break;
+            case 71:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[9][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[9][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[9][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[9][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                break;
+            case 72:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[9][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[9][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[9][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[9][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                break;
+            case 73:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[9][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[9][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[9][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[9][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                break;
+            case 74:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[9][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[9][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[9][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[9][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                break;
+            case 75:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[9][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[9][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[9][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[9][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                break;
+            case 76:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[9][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[9][3].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[9][5].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[9][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                break;
+            case 77:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[9][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[9][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[9][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[9][7].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                break;
+            case 78:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[9][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[9][3].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[9][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[9][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                break;
+            case 79:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[9][1].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[9][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[9][5].setBackgroundColor(getColor(getApplicationContext(), R.color.light_purple));
+                buttons[9][7].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                break;
+            case 80:
+                buttons[1][1].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[1][3].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[1][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[1][7].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][1].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[3][3].setBackgroundColor(getColor(getApplicationContext(), R.color.purple));
+                buttons[3][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[3][7].setBackgroundColor(getColor(getApplicationContext(), R.color.light_orange));
+                buttons[5][1].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][3].setBackgroundColor(getColor(getApplicationContext(), R.color.light_yellow));
+                buttons[5][5].setBackgroundColor(getColor(getApplicationContext(), R.color.green));
+                buttons[5][7].setBackgroundColor(getColor(getApplicationContext(), R.color.orange));
+                buttons[7][1].setBackgroundColor(getColor(getApplicationContext(), R.color.light_green));
+                buttons[7][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[7][5].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[7][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[9][1].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                buttons[9][3].setBackgroundColor(getColor(getApplicationContext(), R.color.cyan));
+                buttons[9][5].setBackgroundColor(getColor(getApplicationContext(), R.color.brown));
+                buttons[9][7].setBackgroundColor(getColor(getApplicationContext(), R.color.pink));
+                break;
+        }
+
+
     }
     public static final int getColor(Context context, int id) {
         final int version = Build.VERSION.SDK_INT;
@@ -1069,8 +2108,13 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
                 states[row][column] = 0;
             }
             if (check_win()) {
-                if (max_level == cur_level) {
+                if (max_level == cur_level && max_level <= NUM_OF_LEVELS) {
                     max_level++;
+                }
+                for (int i = START_ROW; i <= START_ROW + CUR_ROWS - 1; i++) {
+                    for (int j = START_COLUMN; j <= START_COLUMN + CUR_COLUMNS - 1; j++) {
+                        buttons[i][j].setEnabled(false);
+                    }
                 }
                 saveLevel(max_level);
                 int s = 0;
@@ -1079,9 +2123,52 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
                 } else if (how_many_steps() == minSteps[cur_level - 1] + 1) {
                     s = 2;
                 } else if (how_many_steps() > minSteps[cur_level - 1] + 1) s = 1;
-                Dialog dialog = new Dialog(this, s);
-                dialog.showDialog(this);
+                final_animation(s);
+
             }
+        }
+    }
+    void final_animation(final int s) {
+        final Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.change_size);
+        Handler handler1 = new Handler();
+        for (int i = START_ROW; i <= START_ROW + CUR_ROWS - 1 ; i++) {
+            final int k = i;
+            handler1.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    for (int j = START_COLUMN; j <= START_COLUMN + CUR_COLUMNS - 1; j++) {
+                        buttons[k][j].startAnimation(anim);
+                        if(k == START_ROW + CUR_ROWS - 1) {
+                            anim.setAnimationListener(new Animation.AnimationListener() {
+                                @Override
+                                public void onAnimationStart(Animation animation) {
+
+                                }
+
+                                @Override
+                                public void onAnimationEnd(Animation animation) {
+                                    show_dialogs(s);
+                                }
+
+                                @Override
+                                public void onAnimationRepeat(Animation animation) {
+
+                                }
+                            });
+                        }
+                    }
+
+                }
+            }, 300 * i);
+        }
+    }
+    void show_dialogs(int s){
+        if (cur_level == 120) {
+            Dialog_last_level d = new Dialog_last_level(this, s);
+            d.showDialog(this);
+        } else {
+            Dialog dialog = new Dialog(this, s);
+            dialog.showDialog(this);
         }
     }
     int how_many_steps() {
