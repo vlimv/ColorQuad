@@ -24,11 +24,11 @@
     <color name="cyan">#00ccff</color>
     <color name="pressed_cyan">#00cccc</color>
 
-    <color name="light_orange">#ffcc66</color>
+    <color name="light_orange">#fc9c3f</color>
     <color name="light_purple">#bc8bcc</color>
     <color name="light_green">#79ff78</color>
     <color name="brown">#663300</color>
-
-    <color name="light_brown">#ab6f34</color>
+    <color name="light_brown">#a15000</color>
+    <!--<color name="light_brown">#89541e</color>-->
     <color name="transparent">#00000000</color>
 </resources>
