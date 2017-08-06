@@ -35,6 +35,7 @@ public class ChooseLevel extends Game {
         int level = sPref.getInt("level", 1);
         return level;
     }
+
     public static void disable(int l, Button[][] levels) {
         for (int i = 7; i >= 0; i--) {
             for (int j = 4; j >= 0; j--) {
@@ -42,6 +43,23 @@ public class ChooseLevel extends Game {
                 if (k > l) {
                     levels[i][j].setEnabled(false);
                     levels[i][j].setTextColor(Color.GRAY);
+                }
+            }
+        }
+    }
+    public static void setBG(int l, Button[][] levels) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 5; j++) {
+                int k = (Integer)levels[i][j].getTag();
+                if (k < l) {
+                    levels[i][j].setTextColor(Color.parseColor("#000000"));
+                    if (numOfStars[k - 1] == 1) {
+                        levels[i][j].setBackgroundResource(R.drawable.rectangle_one_star);
+                    } else if (numOfStars[k - 1] == 2) {
+                        levels[i][j].setBackgroundResource(R.drawable.rectangle_two_stars);
+                    } else if (numOfStars[k - 1] == 3) {
+                        levels[i][j].setBackgroundResource(R.drawable.rectangle_three_stars);
+                    }
                 }
             }
         }
@@ -170,6 +188,7 @@ public class ChooseLevel extends Game {
                 }
             }
             disable(max_level, levels);
+            setBG(max_level, levels);
             return rootView;
         }
 

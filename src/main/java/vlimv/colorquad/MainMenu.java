@@ -95,6 +95,10 @@ public class MainMenu extends Game implements View.OnClickListener{
         button_levels.startAnimation(anim);
         button_love.startAnimation(anim);
         button_sound.startAnimation(anim);
+        numOfStars = new int[120];
+        for (int i = 0; i < 120; i++) {
+            numOfStars[i] = loadNumOfStars(i + 1);
+        }
     }
     private void checkFirstRun() {
 
@@ -158,7 +162,7 @@ public class MainMenu extends Game implements View.OnClickListener{
                             show_levels();
                             break;
                         case R.id.button_love:
-                            show_intro();
+                            show_credits();
                             break;
                     }
                 }
@@ -200,6 +204,11 @@ public class MainMenu extends Game implements View.OnClickListener{
         startActivity(intent);
     }
 
+    public void show_credits() {
+        Intent intent = new Intent(this, Credits.class);
+        continueBGMusic = true;
+        startActivity(intent);
+    }
     public void show_intro() {
         Intent intent = new Intent(this, how_to.class);
         continueBGMusic = true;

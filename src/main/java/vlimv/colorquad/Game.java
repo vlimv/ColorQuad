@@ -5,20 +5,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by HP on 07.02.2017.
  */
 public class Game extends AppCompatActivity {
-    SharedPreferences sPref, musicsPref;
+    SharedPreferences sPref, musicsPref, starsPref;
     static int max_level = 1;
     static int cur_level = 1;
     public boolean mIsBound = false;
     public boolean isPlayingMusic = true;
     public boolean continueBGMusic = false;
     public static boolean playMusic = true;
+    public static int numOfStars[];
     static MusicService mServ;
     private ServiceConnection Scon = new ServiceConnection(){
 
@@ -58,5 +63,17 @@ public class Game extends AppCompatActivity {
         musicsPref = getSharedPreferences("MUSIC", MODE_PRIVATE);
         boolean playMusic = musicsPref.getBoolean("MUSIC", true);
         return playMusic;
+    }
+    public void saveNumOfStars(int level, int s) {
+        starsPref = getSharedPreferences("level " + level, MODE_PRIVATE);
+        SharedPreferences.Editor ed = starsPref.edit();
+        ed.clear();
+        ed.putInt("level " + level, s);
+        ed.apply();
+    }
+    public int loadNumOfStars(int level) {
+        starsPref = getSharedPreferences("level " + level, MODE_PRIVATE);
+        int numOfStars = starsPref.getInt("level " + level, 0);
+        return numOfStars;
     }
 }
