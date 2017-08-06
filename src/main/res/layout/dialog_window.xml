@@ -1,14 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="270dp">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fullscreen_content"
-        android:src="@drawable/dark_wall"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop" />
+    android:layout_height="260dp"
+    android:background="@drawable/dark_wall">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="200dp"
@@ -54,25 +48,25 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/awesome"
+        android:layout_height="50dp"
+        android:text="@string/one_star_text3"
         android:id="@+id/text"
         android:layout_below="@id/a"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="20dp"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textColor="@color/purple"
         android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal" />
+        android:gravity="center" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginBottom="20dp"
-        android:layout_below="@+id/text">
+        android:layout_alignParentBottom="true">
 
         <ImageButton
             android:layout_width="0dp"

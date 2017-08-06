@@ -3,15 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dark_wall">
-    <!--<LinearLayout-->
-        <!--android:id="@+id/fullscreen_content_controls"-->
-        <!--style="?metaButtonBarStyle"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_gravity="bottom|center_horizontal"-->
-        <!--android:background="@color/black_overlay"-->
-        <!--android:orientation="horizontal">-->
-    <!--</LinearLayout>-->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"

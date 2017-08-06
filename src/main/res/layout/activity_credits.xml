@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dark_wall"
+    tools:context="vlimv.colorquad.Credits">
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/button_back"
+        android:src="@drawable/back"
+        android:adjustViewBounds="true"
+        android:background="@color/yellow"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="3dp"
+        android:layout_marginTop="3dp"
+        android:padding="5dp"
+        android:scaleType="fitCenter"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/l_layout"
+        android:layout_marginTop="80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:textColor="@color/cyan"
+            android:text="COLOR"
+            android:id="@+id/title_color" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/pink"
+            android:text="QUAD"
+            android:id="@+id/title_quad" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/l_layout"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/light_purple"
+        android:layout_centerHorizontal="true"
+        android:text="BACKGROUND BY"
+        android:id="@+id/text_bg"
+        android:textSize="25sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_bg"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/light_purple"
+        android:layout_centerHorizontal="true"
+        android:text="Subtle Patterns"
+        android:id="@+id/subtle_patterns"
+        android:textSize="25sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subtle_patterns"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:text="MUSIC BY"
+        android:textColor="@color/purple"
+        android:id="@+id/text_music"
+        android:textSize="25sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_music"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/purple"
+        android:layout_centerHorizontal="true"
+        android:text="frankum"
+        android:id="@+id/text_frankum"
+        android:textSize="25sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_frankum"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:text="ICONS BY"
+        android:textColor="@color/green"
+        android:id="@+id/text_icons"
+        android:textSize="25sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_icons"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/green"
+        android:layout_centerHorizontal="true"
+        android:text="Yesset Zhussupov"
+        android:id="@+id/text_yesset"
+        android:textSize="25sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_yesset"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:text="CODING BY"
+        android:textColor="@color/orange"
+        android:id="@+id/text_coding"
+        android:textSize="25sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_coding"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/orange"
+        android:layout_centerHorizontal="true"
+        android:text="Alima"
+        android:id="@+id/text_alima"
+        android:textSize="25sp"/>
+
+</RelativeLayout>
