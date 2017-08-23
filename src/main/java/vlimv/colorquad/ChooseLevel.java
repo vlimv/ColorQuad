@@ -47,18 +47,30 @@ public class ChooseLevel extends Game {
             }
         }
     }
-    public static void setBG(int l, Button[][] levels) {
+    public static void setBG(int l, Button[][] levels, int f) {
+        int one = R.drawable.rectangle_one_star_blue;
+        int two = R.drawable.rectangle_two_stars_blue;
+        int three = R.drawable.rectangle_three_stars_blue;
+        if (f == 2) {
+            one = R.drawable.rectangle_one_star_yellow;
+            two = R.drawable.rectangle_two_stars_yellow;
+            three = R.drawable.rectangle_three_stars_yellow;
+        } else if (f == 3) {
+            one = R.drawable.rectangle_one_star_pink;
+            two = R.drawable.rectangle_two_stars_pink;
+            three = R.drawable.rectangle_three_stars_pink;
+        }
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 5; j++) {
                 int k = (Integer)levels[i][j].getTag();
                 if (k < l) {
                     levels[i][j].setTextColor(Color.parseColor("#000000"));
                     if (numOfStars[k - 1] == 1) {
-                        levels[i][j].setBackgroundResource(R.drawable.rectangle_one_star);
+                        levels[i][j].setBackgroundResource(one);
                     } else if (numOfStars[k - 1] == 2) {
-                        levels[i][j].setBackgroundResource(R.drawable.rectangle_two_stars);
+                        levels[i][j].setBackgroundResource(two);
                     } else if (numOfStars[k - 1] == 3) {
-                        levels[i][j].setBackgroundResource(R.drawable.rectangle_three_stars);
+                        levels[i][j].setBackgroundResource(three);
                     }
                 }
             }
@@ -188,7 +200,7 @@ public class ChooseLevel extends Game {
                 }
             }
             disable(max_level, levels);
-            setBG(max_level, levels);
+            setBG(max_level, levels, 1);
             return rootView;
         }
 
@@ -294,6 +306,7 @@ public class ChooseLevel extends Game {
                 }
             }
             disable(max_level, levels);
+            setBG(max_level, levels, 2);
             return rootView;
         }
         public void onClick(View v) {
@@ -394,6 +407,7 @@ public class ChooseLevel extends Game {
                 }
             }
             disable(max_level, levels);
+            setBG(max_level, levels, 3);
             return rootView;
         }
 

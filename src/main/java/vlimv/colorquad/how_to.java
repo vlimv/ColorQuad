@@ -22,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 public class how_to extends Game {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -132,28 +134,52 @@ public class how_to extends Game {
             text_3.setTypeface(Marske);
             text_4.setTypeface(Marske);
             text_greeting.setTypeface(Marske);
+            if (Locale.getDefault().getLanguage().equals("ru")) {
+                SpannableString text_1_spannable = new SpannableString(text_1.getText().toString());
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#f40000")), 109, 116, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff00")), 119, 125, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff6600")), 141, 150, 0);
+                text_1.setText(text_1_spannable);
 
-            SpannableString text_1_spannable = new SpannableString(text_1.getText().toString());
-            text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#f40000")), 114, 117, 0);
-            text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff00")), 122, 128, 0);
-            text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff6600")), 136, 142, 0);
-            text_1.setText(text_1_spannable);
+                SpannableString text_2_spannable = new SpannableString(text_2.getText().toString());
+                text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#f40000")), 8, 15, 0);
+                text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#3772ff")), 18, 23, 0);
+                text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#9900cc")), 28, 39, 0);
+                text_2.setText(text_2_spannable);
 
-            SpannableString text_2_spannable = new SpannableString(text_2.getText().toString());
-            text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#f40000")), 4, 7, 0);
-            text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#3772ff")), 12, 16, 0);
-            text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#9900cc")), 24, 30, 0);
-            text_2.setText(text_2_spannable);
+                SpannableString text_3_spannable = new SpannableString(text_3.getText().toString());
+                text_3_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ff00")), 15, 23, 0);
+                text_3_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff00")), 30, 37, 0);
+                text_3_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#3772ff")), 39, 44, 0);
+                text_3.setText(text_3_spannable);
 
-            SpannableString text_3_spannable = new SpannableString(text_3.getText().toString());
-            text_3_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ff00")), 4, 9, 0);
-            text_3_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff00")), 14, 21, 0);
-            text_3_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#3772ff")), 25, 29, 0);
-            text_3.setText(text_3_spannable);
+                SpannableString text_4_spannable = new SpannableString(text_4.getText().toString());
+                text_4_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 0,6, 0);
+                text_4.setText(text_4_spannable);
+            } else {
+                SpannableString text_1_spannable = new SpannableString(text_1.getText().toString());
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#f40000")), 114, 117, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff00")), 122, 128, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff6600")), 136, 142, 0);
+                text_1.setText(text_1_spannable);
 
-            SpannableString text_4_spannable = new SpannableString(text_4.getText().toString());
-            text_4_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 6, 11, 0);
-            text_4.setText(text_4_spannable);
+                SpannableString text_2_spannable = new SpannableString(text_2.getText().toString());
+                text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#f40000")), 4, 7, 0);
+                text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#3772ff")), 12, 16, 0);
+                text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#9900cc")), 24, 30, 0);
+                text_2.setText(text_2_spannable);
+
+                SpannableString text_3_spannable = new SpannableString(text_3.getText().toString());
+                text_3_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ff00")), 4, 9, 0);
+                text_3_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff00")), 14, 21, 0);
+                text_3_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#3772ff")), 25, 29, 0);
+                text_3.setText(text_3_spannable);
+
+                SpannableString text_4_spannable = new SpannableString(text_4.getText().toString());
+                text_4_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 6, 11, 0);
+                text_4.setText(text_4_spannable);
+            }
+
             Animation anim = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
             anim.setDuration(1500);
             final Animation anim_2 = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
@@ -296,28 +322,51 @@ public class how_to extends Game {
             text_2.setTypeface(Marske);
             text_3.setTypeface(Marske);
             text_4.setTypeface(Marske);
-            SpannableString text_1_spannable = new SpannableString(text_1.getText().toString());
-            text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ff00")), 5, 9, 0);
-            text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 16, 21, 0);
-            text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 16, 21, 0);
-            text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff0066")), 37, 44, 0);
-            text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#9900cc")), 78, 85, 0);
-            text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff6600")), 86, 93, 0);
-            text_1.setText(text_1_spannable);
+            if (Locale.getDefault().getLanguage().equals("ru")) {
+                SpannableString text_1_spannable = new SpannableString(text_1.getText().toString());
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ff00")), 5, 9, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 16, 26, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff0066")), 35, 42, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#9900cc")), 50, 53, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#79ff78")), 73, 83, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff6600")), 104, 108, 0);
+                text_1.setText(text_1_spannable);
 
-            SpannableString text_2_spannable = new SpannableString(text_2.getText().toString());
-            text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#f40000")), 4, 9, 0);
-            text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff00")), 21, 27, 0);
-            text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#3772ff")), 34, 39, 0);
-            text_2.setText(text_2_spannable);
+                SpannableString text_2_spannable = new SpannableString(text_2.getText().toString());
+                text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#f40000")), 9, 16, 0);
+                text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff00")), 44, 48, 0);
+                text_2.setText(text_2_spannable);
 
-            SpannableString text_3_spannable = new SpannableString(text_3.getText().toString());
-            text_3_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff99")), 8, 13, 0);
-            text_3.setText(text_3_spannable);
+                SpannableString text_3_spannable = new SpannableString(text_3.getText().toString());
+                text_3_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#bc8bcc")), 0, 9, 0);
+                text_3.setText(text_3_spannable);
 
-            SpannableString text_4_spannable = new SpannableString(text_4.getText().toString());
-            text_4_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 6, 11, 0);
-            text_4.setText(text_4_spannable);
+                SpannableString text_4_spannable = new SpannableString(text_4.getText().toString());
+                text_4_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 0, 6, 0);
+                text_4.setText(text_4_spannable);
+            } else {
+                SpannableString text_1_spannable = new SpannableString(text_1.getText().toString());
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ff00")), 5, 9, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 16, 21, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff0066")), 37, 44, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#9900cc")), 78, 85, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff6600")), 86, 93, 0);
+                text_1.setText(text_1_spannable);
+
+                SpannableString text_2_spannable = new SpannableString(text_2.getText().toString());
+                text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#f40000")), 4, 9, 0);
+                text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff00")), 21, 27, 0);
+                text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#3772ff")), 34, 39, 0);
+                text_2.setText(text_2_spannable);
+
+                SpannableString text_3_spannable = new SpannableString(text_3.getText().toString());
+                text_3_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff99")), 8, 13, 0);
+                text_3.setText(text_3_spannable);
+
+                SpannableString text_4_spannable = new SpannableString(text_4.getText().toString());
+                text_4_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 6, 11, 0);
+                text_4.setText(text_4_spannable);
+            }
             return rootView;
         }
 
@@ -459,18 +508,33 @@ public class how_to extends Game {
             text_1 = (TextView)rootView.findViewById(R.id.text_1);
             text_2 = (TextView)rootView.findViewById(R.id.text_2);
             tl = (TableLayout) rootView.findViewById(R.id.table_l);
-            SpannableString text_1_spannable = new SpannableString(text_1.getText().toString());
-            text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ff00")), 7, 12, 0);
-            text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff00")), 22, 32, 0);
-            text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff6600")), 35, 38, 0);
-            text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 81, 84, 0);
-            text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#9900cc")), 101, 105, 0);
-            text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#bc8bcc")), 136, 138, 0);
-            text_1.setText(text_1_spannable);
-            SpannableString text_2_spannable = new SpannableString(text_2.getText().toString());
-            text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#79ff78")), 0, 4, 0);
-            text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#f40000")), 38, 43, 0);
-            text_2.setText(text_2_spannable);
+            if (Locale.getDefault().getLanguage().equals("ru")) {
+                SpannableString text_1_spannable = new SpannableString(text_1.getText().toString());
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ff00")), 11, 17, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff00")), 30, 40, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff6600")), 69, 73, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 90, 98, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#9900cc")), 112, 116, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#bc8bcc")), 141, 150, 0);
+                text_1.setText(text_1_spannable);
+                SpannableString text_2_spannable = new SpannableString(text_2.getText().toString());
+                text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#79ff78")), 0, 7, 0);
+                text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#f40000")), 34, 40, 0);
+                text_2.setText(text_2_spannable);
+            } else {
+                SpannableString text_1_spannable = new SpannableString(text_1.getText().toString());
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ff00")), 7, 12, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff00")), 22, 32, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff6600")), 35, 38, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 81, 84, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#9900cc")), 101, 105, 0);
+                text_1_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#bc8bcc")), 136, 138, 0);
+                text_1.setText(text_1_spannable);
+                SpannableString text_2_spannable = new SpannableString(text_2.getText().toString());
+                text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#79ff78")), 0, 4, 0);
+                text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#f40000")), 38, 43, 0);
+                text_2.setText(text_2_spannable);
+            }
             Typeface Marske = Typeface.createFromAsset(getActivity().getAssets(),"fonts/Marske.ttf");
             buttons[0][0] = (ImageButton)rootView.findViewById(R.id.button00);
             buttons[0][1] = (ImageButton)rootView.findViewById(R.id.button01);

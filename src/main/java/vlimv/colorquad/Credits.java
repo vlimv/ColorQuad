@@ -14,6 +14,7 @@ import android.widget.TextView;
 public class Credits extends Game implements View.OnClickListener{
 
     TextView text_background, text_subtle, text_music, text_frankum, text_icons, text_yesset, text_coding, text_alima;
+    TextView texts[] = new TextView[11];
     ImageButton btn_back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,34 +23,25 @@ public class Credits extends Game implements View.OnClickListener{
         Typeface Marske = Typeface.createFromAsset(getAssets(),"fonts/Marske.ttf");
         TextView title_color = (TextView)findViewById(R.id.title_color);
         TextView title_quad = (TextView)findViewById(R.id.title_quad);
-        text_background = (TextView) findViewById(R.id.text_bg);
-        text_background.setOnClickListener(this);
-        text_subtle = (TextView) findViewById(R.id.subtle_patterns);
-        text_subtle.setOnClickListener(this);
-        text_music = (TextView) findViewById(R.id.text_music);
-        text_music.setOnClickListener(this);
-        text_frankum = (TextView) findViewById(R.id.text_frankum);
-        text_frankum.setOnClickListener(this);
-        text_icons = (TextView) findViewById(R.id.text_icons);
-        text_icons.setOnClickListener(this);
-        text_yesset = (TextView) findViewById(R.id.text_yesset);
-        text_yesset.setOnClickListener(this);
-        text_coding = (TextView) findViewById(R.id.text_coding);
-        text_coding.setOnClickListener(this);
-        text_alima = (TextView) findViewById(R.id.text_alima);
-        text_alima.setOnClickListener(this);
+        texts[0] = (TextView) findViewById(R.id.text_bg);
+        texts[1] = (TextView) findViewById(R.id.subtle_patterns);
+        texts[2] = (TextView) findViewById(R.id.text_music);
+        texts[3] = (TextView) findViewById(R.id.text_frankum);
+        texts[4] = (TextView) findViewById(R.id.text_icons);
+        texts[5] = (TextView) findViewById(R.id.text_yesset);
+        texts[6] = (TextView) findViewById(R.id.text_font);
+        texts[7] = (TextView)findViewById (R.id.tex_font_author_1);
+        texts[10] = (TextView)findViewById (R.id.tex_font_author_2);
+        texts[8] = (TextView) findViewById(R.id.text_coding);
+        texts[9] = (TextView) findViewById(R.id.text_alima);
         btn_back = (ImageButton) findViewById(R.id.button_back);
         btn_back.setOnClickListener(this);
         title_color.setTypeface(Marske);
         title_quad.setTypeface(Marske);
-        text_background.setTypeface(Marske);
-        text_subtle.setTypeface(Marske);
-        text_music.setTypeface(Marske);
-        text_frankum.setTypeface(Marske);
-        text_icons.setTypeface(Marske);
-        text_yesset.setTypeface(Marske);
-        text_coding.setTypeface(Marske);
-        text_alima.setTypeface(Marske);
+        for (int i = 0; i < 11; i++) {
+            texts[i].setOnClickListener(this);
+            texts[i].setTypeface(Marske);
+        }
     }
 
     @Override

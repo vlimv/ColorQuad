@@ -31,6 +31,8 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 /**
  * Created by HP on 06.02.2017.
  */
@@ -372,9 +374,15 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
 
             Typeface Marske = Typeface.createFromAsset(getAssets(), "fonts/Marske.ttf");
             TextView text = (TextView) dialog.findViewById(R.id.text_1);
-            SpannableString text_spannable = new SpannableString(text.getText().toString());
-            text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#663300")), 28, 33, 0);
-            text.setText(text_spannable);
+            if (Locale.getDefault().getLanguage().equals("ru")) {
+                SpannableString text_spannable = new SpannableString(text.getText().toString());
+                text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#663300")), 21, 31, 0);
+                text.setText(text_spannable);
+            } else {
+                SpannableString text_spannable = new SpannableString(text.getText().toString());
+                text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#663300")), 28, 33, 0);
+                text.setText(text_spannable);
+            }
             text.setTypeface(Marske);
             ImageButton btn_no = (ImageButton) dialog.findViewById(R.id.button_no);
             btn_no.setOnClickListener(new View.OnClickListener() {
@@ -409,9 +417,15 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
             Typeface Marske = Typeface.createFromAsset(getAssets(), "fonts/Marske.ttf");
             TextView text = (TextView) dialog.findViewById(R.id.text_1);
             SpannableString text_spannable = new SpannableString(text.getText().toString());
-            text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff0066")), 13, 17, 0);
-            text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 19, 23, 0);
-            text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff99")), 28, 40, 0);
+            if (Locale.getDefault().getLanguage().equals("ru")) {
+                    text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff0066")), 13, 21, 0);
+                    text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 23, 31, 0);
+                    text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff99")), 34, 48, 0);
+            } else {
+                text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff0066")), 13, 17, 0);
+                text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 19, 23, 0);
+                text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ffff99")), 28, 40, 0);
+            }
             text.setText(text_spannable);
             text.setTypeface(Marske);
             ImageButton btn_no = (ImageButton) dialog.findViewById(R.id.button_no);
@@ -449,9 +463,6 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
             Typeface Marske = Typeface.createFromAsset(getAssets(), "fonts/Marske.ttf");
             TextView text = (TextView) dialog.findViewById(R.id.text_quit);
             text.setText(id);
-//            SpannableString text_spannable = new SpannableString(text.getText().toString());
-//            text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#ff0066")), 13, 17, 0);
-//            text.setText(text_spannable);
             text.setTypeface(Marske);
             ImageButton btn_no = (ImageButton) dialog.findViewById(R.id.button_no);
             btn_no.setOnClickListener(new View.OnClickListener() {
@@ -485,7 +496,11 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
             TextView text = (TextView) dialog.findViewById(R.id.text_1);
             ImageView img = (ImageView) dialog.findViewById(R.id.light_orange);
             SpannableString text_spannable = new SpannableString(text.getText().toString());
-            text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#fc9c3f")), 36, 48, 0);
+            if (Locale.getDefault().getLanguage().equals("ru")) {
+                text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#fc9c3f")), 38, 55, 0);
+            } else {
+                text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#fc9c3f")), 36, 48, 0);
+            }
             text.setText(text_spannable);
 
             text.setTypeface(Marske);
@@ -521,8 +536,13 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
             Typeface Marske = Typeface.createFromAsset(getAssets(), "fonts/Marske.ttf");
             TextView text = (TextView) dialog.findViewById(R.id.text);
             SpannableString text_spannable = new SpannableString(text.getText().toString());
-            text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#bc8bcc")), 23, 35, 0);
-            text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#79ff78")), 40, 51, 0);
+            if (Locale.getDefault().getLanguage().equals("ru")) {
+                text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#bc8bcc")), 20, 37, 0);
+                text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#79ff78")), 40, 54, 0);
+            } else {
+                text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#bc8bcc")), 23, 35, 0);
+                text_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#79ff78")), 40, 51, 0);
+            }
             text.setText(text_spannable);
             text.setTypeface(Marske);
             ImageButton btn_no = (ImageButton) dialog.findViewById(R.id.button_no);
@@ -741,7 +761,9 @@ public class Levels extends Game implements View.OnClickListener, View.OnLongCli
             text.setTextColor(Color.parseColor("#ff0066"));
             button_question.setBackgroundColor(Color.parseColor("#00ccff"));
         }
-        text.setText("LEVEL " + cur_level);
+        String txt = getString(R.string.level);
+        txt += " " + cur_level;
+        text.setText(txt);
         if (cur_level <= 5) {
             CUR_ROWS = 5;
             CUR_COLUMNS = 5;
