@@ -58,7 +58,6 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:padding="10dp"
                 android:layout_column="0" />
 
             <ImageButton
@@ -82,7 +81,6 @@
                 android:src="@drawable/sound"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:padding="10dp"
                 android:layout_weight="1"
                 android:layout_column="0" />
 
@@ -101,10 +99,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/button_levels"
                 android:background="@drawable/rectangle_yellow"
-                android:src="@drawable/levels_icon"
+                android:src="@drawable/levels"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:padding="10dp"
                 android:layout_weight="1"
                 android:layout_column="0" />
         </TableRow>
@@ -130,7 +127,6 @@
                 android:src="@drawable/love"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:padding="10dp"
                 android:layout_weight="1"
                 android:layout_column="0" />
 

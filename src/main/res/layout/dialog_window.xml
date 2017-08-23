@@ -6,8 +6,8 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="15dp"
         android:id="@+id/b"
         android:layout_centerHorizontal="true">
         <ImageView
@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/star1"
             android:layout_weight="1"
-            android:src="@drawable/star_1"
+            android:src="@drawable/star"
             android:layout_marginTop="10dp"
             android:scaleType="fitCenter"
             android:visibility="invisible"/>
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/star2"
             android:layout_weight="1"
-            android:src="@drawable/star_1"
+            android:src="@drawable/star"
             android:layout_marginBottom="20dp"
             android:scaleType="fitCenter"
             android:visibility="invisible"/>
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/star3"
             android:layout_weight="1"
-            android:src="@drawable/star_1"
+            android:src="@drawable/star"
             android:scaleType="fitCenter"
             android:layout_marginTop="10dp"
             android:visibility="invisible"/>
@@ -48,7 +48,7 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:text="@string/one_star_text3"
         android:id="@+id/text"
         android:layout_below="@id/a"
@@ -72,7 +72,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/btn_menu"
-            android:src="@drawable/no"
+            android:src="@drawable/home"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:background="@color/cyan"
@@ -85,7 +85,6 @@
             android:src="@drawable/refresh"
             android:background="@color/yellow"
             android:adjustViewBounds="true"
-            android:padding="8dp"
             android:scaleType="fitCenter"
             android:layout_weight="1"/>
 
@@ -96,7 +95,6 @@
             android:src="@drawable/next"
             android:background="@color/pink"
             android:adjustViewBounds="true"
-            android:padding="6dp"
             android:scaleType="fitCenter"
             android:layout_weight="1"/>
     </LinearLayout>

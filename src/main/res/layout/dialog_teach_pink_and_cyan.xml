@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="280dp"
+    android:layout_height="310dp"
     android:background="@null">
     <ImageView
         android:layout_width="match_parent"
@@ -18,15 +18,16 @@
         android:layout_marginTop="15dp" />
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:textSize="25sp"
         android:text="@string/teach_pink"
         android:layout_below="@id/a"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
+        android:gravity="center"
         android:id="@+id/text_1"/>
     <ImageView
         android:layout_width="wrap_content"
@@ -54,8 +55,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:layout_below="@+id/light_yellow"
-        android:layout_marginTop="20dp">
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp">
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
