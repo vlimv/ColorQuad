@@ -42,4 +42,10 @@
     <string name="three_star_text4">Oh my square! You did it!</string>
     <string name="three_star_text5">Squaretastic!</string>
     <string name="title_activity_choose_level">ChooseLevel</string>
+    <string name="level">Level</string>
+    <string name="font">font:</string>
+    <string name="music">music:</string>
+    <string name="background">background:</string>
+    <string name="icons">icons:</string>
+    <string name="coding">coding:</string>
 </resources>
