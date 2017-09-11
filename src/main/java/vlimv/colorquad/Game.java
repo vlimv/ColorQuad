@@ -5,12 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by HP on 07.02.2017.
@@ -56,13 +52,13 @@ public class Game extends AppCompatActivity {
         SharedPreferences.Editor ed = musicsPref.edit();
         ed.clear();
         ed.putBoolean("MUSIC", playMusic);
-        ed.commit();
+        ed.apply();
     }
 
     boolean loadMusic() {
         musicsPref = getSharedPreferences("MUSIC", MODE_PRIVATE);
-        boolean playMusic = musicsPref.getBoolean("MUSIC", true);
-        return playMusic;
+        boolean p = musicsPref.getBoolean("MUSIC", true);
+        return p;
     }
     public void saveNumOfStars(int level, int s) {
         starsPref = getSharedPreferences("level " + level, MODE_PRIVATE);

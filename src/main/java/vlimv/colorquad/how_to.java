@@ -19,6 +19,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -115,20 +116,24 @@ public class how_to extends Game {
             return fragment;
         }
 
+        Animation anim [] = new Animation[5];
+        TextView text_1, text_2, text_3, text_4, text_greeting;
+        ImageView orange, green, purple;
+        boolean animated = false;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_how_to_1, container, false);
             Typeface Marske = Typeface.createFromAsset(getActivity().getAssets(),"fonts/Marske.ttf");
-            final TextView text_1 = (TextView) rootView.findViewById(R.id.text_1);
-            final TextView text_2 = (TextView) rootView.findViewById(R.id.text_2);
-            final TextView text_3 = (TextView) rootView.findViewById(R.id.text_3);
-            final TextView text_4 = (TextView)rootView.findViewById(R.id.text_4);
-            final TextView text_greeting = (TextView) rootView.findViewById(R.id.text_greeting);
-            final ImageView orange = (ImageView) rootView.findViewById(R.id.orange);
-            final ImageView green = (ImageView) rootView.findViewById(R.id.green);
-            final ImageView purple = (ImageView) rootView.findViewById(R.id.purple);
-            boolean animated = false;
+            text_1 = (TextView) rootView.findViewById(R.id.text_1);
+            text_2 = (TextView) rootView.findViewById(R.id.text_2);
+            text_3 = (TextView) rootView.findViewById(R.id.text_3);
+            text_4 = (TextView)rootView.findViewById(R.id.text_4);
+            text_greeting = (TextView) rootView.findViewById(R.id.text_greeting);
+            orange = (ImageView) rootView.findViewById(R.id.orange);
+            green = (ImageView) rootView.findViewById(R.id.green);
+            purple = (ImageView) rootView.findViewById(R.id.purple);
+            animated = false;
             text_1.setTypeface(Marske);
             text_2.setTypeface(Marske);
             text_3.setTypeface(Marske);
@@ -179,17 +184,30 @@ public class how_to extends Game {
                 text_4_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 6, 11, 0);
                 text_4.setText(text_4_spannable);
             }
+            RelativeLayout layout = (RelativeLayout) rootView.findViewById(R.id.layout);
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for (int i = 0; i < 5; i++) {
+                        if (anim[i].hasStarted() && !anim[i].hasEnded()) {
+                            anim[i].cancel();
+                            anim[i].reset();
+                            break;
+                        }
+                    }
 
-            Animation anim = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
-            anim.setDuration(1500);
-            final Animation anim_2 = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
-            anim_2.setDuration(4000);
-            final Animation anim_3 = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
-            final Animation anim_4 = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
-            final Animation anim_5 = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
-            anim_5.setDuration(4000);
+                }
+            });
+            anim[0] = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
+            anim[0].setDuration(1500);
+            anim[1] = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
+            anim[1].setDuration(4000);
+            anim[2] = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
+            anim[3] = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
+            anim[4] = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
+            anim[4].setDuration(4000);
             if (!animated) {
-                anim.setAnimationListener(new Animation.AnimationListener() {
+                anim[0].setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
 
@@ -198,8 +216,8 @@ public class how_to extends Game {
                     @Override
                     public void onAnimationEnd(Animation animation) {
                         text_greeting.setVisibility(View.VISIBLE);
-                        text_1.startAnimation(anim_2);
-                        orange.startAnimation(anim_2);
+                        text_1.startAnimation(anim[1]);
+                        orange.startAnimation(anim[1]);
                     }
 
                     @Override
@@ -207,9 +225,9 @@ public class how_to extends Game {
 
                     }
                 });
-                text_greeting.startAnimation(anim);
+                text_greeting.startAnimation(anim[0]);
                 animated = true;
-                anim_2.setAnimationListener(new Animation.AnimationListener() {
+                anim[1].setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
 
@@ -219,8 +237,8 @@ public class how_to extends Game {
                     public void onAnimationEnd(Animation animation) {
                         text_1.setVisibility(View.VISIBLE);
                         orange.setVisibility(View.VISIBLE);
-                        text_2.startAnimation(anim_3);
-                        purple.startAnimation(anim_3);
+                        text_2.startAnimation(anim[2]);
+                        purple.startAnimation(anim[2]);
                     }
 
                     @Override
@@ -228,7 +246,7 @@ public class how_to extends Game {
 
                     }
                 });
-                anim_3.setAnimationListener(new Animation.AnimationListener() {
+                anim[2].setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
 
@@ -240,8 +258,8 @@ public class how_to extends Game {
                         purple.setVisibility(View.VISIBLE);
                         text_3.setVisibility(View.VISIBLE);
                         green.setVisibility(View.VISIBLE);
-                        text_3.startAnimation(anim_4);
-                        green.startAnimation(anim_4);
+                        text_3.startAnimation(anim[3]);
+                        green.startAnimation(anim[3]);
                     }
 
                     @Override
@@ -249,7 +267,7 @@ public class how_to extends Game {
 
                     }
                 });
-                anim_4.setAnimationListener(new Animation.AnimationListener() {
+                anim[3].setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
 
@@ -258,7 +276,7 @@ public class how_to extends Game {
                     @Override
                     public void onAnimationEnd(Animation animation) {
                         text_4.setVisibility(View.VISIBLE);
-                        text_4.startAnimation(anim_5);
+                        text_4.startAnimation(anim[4]);
                     }
 
                     @Override
@@ -267,7 +285,7 @@ public class how_to extends Game {
                     }
                 });
             }
-                        return rootView;
+            return rootView;
         }
     }
 
@@ -278,6 +296,7 @@ public class how_to extends Game {
          */
 
         int states[] = new int[4];
+        Animation anim[] = new Animation[3];
         ImageButton buttons[] = new ImageButton[4];
         TextView text_1, text_2, text_3, text_4;
         TableLayout tl;
@@ -367,6 +386,20 @@ public class how_to extends Game {
                 text_4_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#00ccff")), 6, 11, 0);
                 text_4.setText(text_4_spannable);
             }
+            RelativeLayout layout = (RelativeLayout) rootView.findViewById(R.id.layout);
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for (int i = 0; i < 3; i++) {
+                        if (anim[i].hasStarted() && !anim[i].hasEnded()) {
+                            anim[i].cancel();
+                            anim[i].reset();
+                            break;
+                        }
+                    }
+
+                }
+            });
             return rootView;
         }
 
@@ -422,27 +455,29 @@ public class how_to extends Game {
             }
             if (yellow == 1 && red == 1 && transparent == 2) {
                 return true;
-            } else
+            } else if (transparent == 1 || transparent == 0) {
+                text_2.setText(R.string.ht_fragment2_t4);
+                text_2.setTextColor(Color.parseColor("#f40000"));
+            }
                 return false;
         }
         @Override
         public void setUserVisibleHint(boolean isVisibleToUser) {
             super.setUserVisibleHint(isVisibleToUser);
             if (isVisibleToUser && !animated) {
-                Animation anim = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
-                anim.setDuration(3500);
-                final Animation anim_2 = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
-                final Animation anim_3 = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
-                anim.setAnimationListener(new Animation.AnimationListener() {
+                anim[0] = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
+                anim[0].setDuration(3500);
+                anim[1] = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
+                anim[2] = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
+                anim[0].setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
-
+                        text_1.setVisibility(View.VISIBLE);
                     }
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        text_1.setVisibility(View.VISIBLE);
-                        tl.startAnimation(anim_2);
+                        tl.startAnimation(anim[1]);
                     }
 
                     @Override
@@ -450,19 +485,18 @@ public class how_to extends Game {
 
                     }
                 });
-                text_1.startAnimation(anim);
+                text_1.startAnimation(anim[0]);
                 animated = true;
-                anim_2.setAnimationListener(new Animation.AnimationListener() {
+                anim[1].setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
-
+                        tl.setVisibility(View.VISIBLE);
                     }
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        tl.setVisibility(View.VISIBLE);
                         text_2.setVisibility(View.VISIBLE);
-                        text_2.startAnimation(anim_3);
+                        text_2.startAnimation(anim[2]);
                     }
 
                     @Override
@@ -482,6 +516,7 @@ public class how_to extends Game {
 
         ImageButton buttons[][] = new ImageButton[5][5];
         TextView text_level, text_1, text_2;
+        Animation anim [] = new Animation[2];
         ImageView hint;
         int states[][] = new int[5][5];
         TableLayout tl;
@@ -535,6 +570,10 @@ public class how_to extends Game {
                 text_2_spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#f40000")), 38, 43, 0);
                 text_2.setText(text_2_spannable);
             }
+            if (animated) {
+                tl.setVisibility(View.VISIBLE);
+                text_1.setVisibility(View.VISIBLE);
+            }
             Typeface Marske = Typeface.createFromAsset(getActivity().getAssets(),"fonts/Marske.ttf");
             buttons[0][0] = (ImageButton)rootView.findViewById(R.id.button00);
             buttons[0][1] = (ImageButton)rootView.findViewById(R.id.button01);
@@ -582,6 +621,20 @@ public class how_to extends Game {
                     }
                 }
             }
+            RelativeLayout layout = (RelativeLayout) rootView.findViewById(R.id.r_layout);
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for (int i = 0; i < 2; i++) {
+                        if (anim[i].hasStarted() && !anim[i].hasEnded()) {
+                            anim[i].cancel();
+                            anim[i].reset();
+                            break;
+                        }
+                    }
+
+                }
+            });
             return rootView;
         }
 
@@ -706,20 +759,19 @@ public class how_to extends Game {
         public void setUserVisibleHint(boolean isVisibleToUser) {
             super.setUserVisibleHint(isVisibleToUser);
             if (isVisibleToUser && !animated) {
-                Animation anim = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
-                anim.setDuration(3500);
-                final Animation anim_2 = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
-                anim.setAnimationListener(new Animation.AnimationListener() {
+                anim[0] = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
+                anim[0].setDuration(3500);
+                anim[1] = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.text_anim);
+                anim[0].setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
-
+                        text_1.setVisibility(View.VISIBLE);
                     }
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        text_1.setVisibility(View.VISIBLE);
                         tl.setVisibility(View.VISIBLE);
-                        tl.startAnimation(anim_2);
+                        tl.startAnimation(anim[1]);
                     }
 
                     @Override
@@ -727,7 +779,7 @@ public class how_to extends Game {
 
                     }
                 });
-                text_1.startAnimation(anim);
+                text_1.startAnimation(anim[0]);
                 animated = true;
             }
         }

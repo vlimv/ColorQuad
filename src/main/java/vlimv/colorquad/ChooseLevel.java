@@ -59,6 +59,10 @@ public class ChooseLevel extends Game {
             one = R.drawable.rectangle_one_star_pink;
             two = R.drawable.rectangle_two_stars_pink;
             three = R.drawable.rectangle_three_stars_pink;
+        } else if (f == 4) {
+            one = R.drawable.rectangle_one_star_orange;
+            two = R.drawable.rectangle_two_stars_orange;
+            three = R.drawable.rectangle_three_stars_orange;
         }
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 5; j++) {
@@ -429,6 +433,108 @@ public class ChooseLevel extends Game {
             }
         }
     }
+    public static class fragment_4 extends Fragment implements View.OnClickListener{
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private static final String ARG_SECTION_NUMBER = "section_number";
+        Button levels[][]= new Button[8][5];
+        ImageButton back_button;
+
+        public fragment_4() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static fragment_4 newInstance(int sectionNumber) {
+            fragment_4 fragment = new fragment_4();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_choose_level_4, container, false);
+
+            back_button = (ImageButton) rootView.findViewById(R.id.button_back);
+            back_button.setOnClickListener(this);
+            Typeface Marske = Typeface.createFromAsset(getActivity().getAssets(),"fonts/Marske.ttf");
+
+            levels[0][0] = (Button) rootView.findViewById (R.id.level_121);
+            levels[0][1] = (Button) rootView.findViewById (R.id.level_122);
+            levels[0][2] = (Button) rootView.findViewById (R.id.level_123);
+            levels[0][3] = (Button) rootView.findViewById (R.id.level_124);
+            levels[0][4] = (Button) rootView.findViewById (R.id.level_125);
+            levels[1][0] = (Button) rootView.findViewById (R.id.level_126);
+            levels[1][1] = (Button) rootView.findViewById (R.id.level_127);
+            levels[1][2] = (Button) rootView.findViewById (R.id.level_128);
+            levels[1][3] = (Button) rootView.findViewById (R.id.level_129);
+            levels[1][4] = (Button) rootView.findViewById (R.id.level_130);
+            levels[2][0] = (Button) rootView.findViewById (R.id.level_131);
+            levels[2][1] = (Button) rootView.findViewById (R.id.level_132);
+            levels[2][2] = (Button) rootView.findViewById (R.id.level_133);
+            levels[2][3] = (Button) rootView.findViewById (R.id.level_134);
+            levels[2][4] = (Button) rootView.findViewById (R.id.level_135);
+            levels[3][0] = (Button) rootView.findViewById (R.id.level_136);
+            levels[3][1] = (Button) rootView.findViewById (R.id.level_137);
+            levels[3][2] = (Button) rootView.findViewById (R.id.level_138);
+            levels[3][3] = (Button) rootView.findViewById (R.id.level_139);
+            levels[3][4] = (Button) rootView.findViewById (R.id.level_140);
+            levels[4][0] = (Button) rootView.findViewById (R.id.level_141);
+            levels[4][1] = (Button) rootView.findViewById (R.id.level_142);
+            levels[4][2] = (Button) rootView.findViewById (R.id.level_143);
+            levels[4][3] = (Button) rootView.findViewById (R.id.level_144);
+            levels[4][4] = (Button) rootView.findViewById (R.id.level_145);
+            levels[5][0] = (Button) rootView.findViewById (R.id.level_146);
+            levels[5][1] = (Button) rootView.findViewById (R.id.level_147);
+            levels[5][2] = (Button) rootView.findViewById (R.id.level_148);
+            levels[5][3] = (Button) rootView.findViewById (R.id.level_149);
+            levels[5][4] = (Button) rootView.findViewById (R.id.level_150);
+            levels[6][0] = (Button) rootView.findViewById (R.id.level_151);
+            levels[6][1] = (Button) rootView.findViewById (R.id.level_152);
+            levels[6][2] = (Button) rootView.findViewById (R.id.level_153);
+            levels[6][3] = (Button) rootView.findViewById (R.id.level_154);
+            levels[6][4] = (Button) rootView.findViewById (R.id.level_155);
+            levels[7][0] = (Button) rootView.findViewById (R.id.level_156);
+            levels[7][1] = (Button) rootView.findViewById (R.id.level_157);
+            levels[7][2] = (Button) rootView.findViewById (R.id.level_158);
+            levels[7][3] = (Button) rootView.findViewById (R.id.level_159);
+            levels[7][4] = (Button) rootView.findViewById (R.id.level_160);
+            for (int i = 0; i < 8 ; i++) {
+                for (int j = 0; j < 5; j++) {
+                    levels[i][j].setTag(i*5 + j + 121);
+                    levels[i][j].setOnClickListener(this);
+                    levels[i][j].setTypeface(Marske);
+                }
+            }
+            disable(max_level, levels);
+            setBG(max_level, levels, 4);
+            return rootView;
+        }
+
+        public void onClick(View v) {
+            if (v.getId() == R.id.button_back) {
+                Intent home_intent = new Intent(getActivity(), MainMenu.class);
+                continueBGMusic = true;
+                startActivity(home_intent);
+            }
+            else {
+                int l = (Integer) v.getTag();
+                Intent level_intent = new Intent(getActivity(), Levels.class);
+                continueBGMusic = true;
+                Bundle extras = new Bundle();
+                extras.putString("from_where", "choose_level");
+                extras.putInt("level", l);
+                level_intent.putExtras(extras);
+                startActivity(level_intent);
+            }
+        }
+    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -451,6 +557,8 @@ public class ChooseLevel extends Game {
                     return fragment_2.newInstance(position + 1);
                 case 2:
                     return fragment_3.newInstance(position + 1);
+                case 3:
+                    return fragment_4.newInstance(position + 1);
                 default:
                     break;
 
@@ -461,7 +569,7 @@ public class ChooseLevel extends Game {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 4;
         }
 
         @Override
@@ -473,6 +581,8 @@ public class ChooseLevel extends Game {
                     return "SECTION 2";
                 case 2:
                     return "SECTION 3";
+                case 3:
+                    return "SECTION 4";
             }
             return null;
         }

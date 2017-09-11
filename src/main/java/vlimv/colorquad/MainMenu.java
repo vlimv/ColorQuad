@@ -8,17 +8,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.transitionseverywhere.Transition;
+import com.transitionseverywhere.Recolor;
+import com.transitionseverywhere.TransitionManager;
 
 public class MainMenu extends Game implements View.OnClickListener{
     public class Dialog_quit extends android.app.Dialog {
@@ -59,6 +65,7 @@ public class MainMenu extends Game implements View.OnClickListener{
     Animation anim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
         Typeface Marske = Typeface.createFromAsset(getAssets(),"fonts/Marske.ttf");
@@ -66,13 +73,13 @@ public class MainMenu extends Game implements View.OnClickListener{
         Intent music = new Intent();
         music.setClass(this,MusicService.class);
         playMusic = loadMusic();
-        Log.d("music", "playMusic" +  playMusic);
         button_play = (ImageButton) findViewById(R.id.button_play);
         button_levels = (ImageButton) findViewById(R.id.button_levels);
         button_love = (ImageButton) findViewById(R.id.button_love);
         button_sound = (ImageButton) findViewById(R.id.button_sound);
         title_color = (TextView) findViewById(R.id.title_color);
         title_quad = (TextView) findViewById(R.id.title_quad);
+        final ViewGroup transitionsContainer = (ViewGroup) findViewById(R.id.layout);
         if (playMusic) {
             startService(music);
             isPlayingMusic = true;
@@ -81,7 +88,6 @@ public class MainMenu extends Game implements View.OnClickListener{
             isPlayingMusic = false;
             button_sound.setImageResource(R.drawable.mute);
         }
-
         button_play.setOnClickListener(this);
         button_levels.setOnClickListener(this);
         button_love.setOnClickListener(this);
@@ -98,6 +104,97 @@ public class MainMenu extends Game implements View.OnClickListener{
         numOfStars = new int[120];
         for (int i = 0; i < 120; i++) {
             numOfStars[i] = loadNumOfStars(i + 1);
+        }
+        final Transition transition_1 = new Recolor();
+        final Transition transition_2 = new Recolor();
+        transition_1.setDuration(1000);
+//        transition_1.addListener(new Transition.TransitionListener() {
+//            @Override
+//            public void onTransitionStart(Transition transition) {
+//
+//            }
+//
+//            @Override
+//            public void onTransitionEnd(Transition transition) {
+//                transition_2.setDuration(2000);
+//                int k;
+//                TransitionManager.beginDelayedTransition(transitionsContainer, transition_2);
+//                int c = title_color.getCurrentTextColor();
+//                if (c == 0x00ccff) {
+//                    k = R.color.pink;
+//                } else {
+//                    k = R.color.cyan;
+//                }
+//                title_color.setTextColor(getColor(getApplicationContext(), k));
+//            }
+//
+//            @Override
+//            public void onTransitionCancel(Transition transition) {
+//
+//            }
+//
+//            @Override
+//            public void onTransitionPause(Transition transition) {
+//
+//            }
+//
+//            @Override
+//            public void onTransitionResume(Transition transition) {
+//
+//            }
+//        });
+//        transition_2.addListener(new Transition.TransitionListener() {
+//            @Override
+//            public void onTransitionStart(Transition transition) {
+//
+//            }
+//
+//            @Override
+//            public void onTransitionEnd(Transition transition) {
+//                int k;
+//                TransitionManager.beginDelayedTransition(transitionsContainer, transition);
+//                int c = title_color.getCurrentTextColor();
+//                if (c == 0x00ccff) {
+//                    k = R.color.pink;
+//                } else {
+//                    k = R.color.cyan;
+//                }
+//                title_color.setTextColor(getColor(getApplicationContext(), k));
+//            }
+//
+//            @Override
+//            public void onTransitionCancel(Transition transition) {
+//
+//            }
+//
+//            @Override
+//            public void onTransitionPause(Transition transition) {
+//
+//            }
+//
+//            @Override
+//            public void onTransitionResume(Transition transition) {
+//
+//            }
+//        });
+//        int k;
+//        int c = title_color.getCurrentTextColor();
+//        if (c == 0x00ccff) {
+//            k = R.color.cyan;
+//        } else {
+//            k = R.color.pink;
+//
+//        }
+//        TransitionManager.beginDelayedTransition(transitionsContainer, transition_1);
+//        title_color.setTextColor(getColor(getApplicationContext(), k));
+
+    }
+    public static final int getColor(Context context, int id) {
+        final int version = Build.VERSION.SDK_INT;
+        if (version >= 23) {
+            return ContextCompat.getColor(context, id);
+        } else {
+            return context.getResources().getColor(id);
         }
     }
     private void checkFirstRun() {
@@ -245,7 +342,6 @@ public class MainMenu extends Game implements View.OnClickListener{
     protected void onResume()
     {
         super.onResume();
-        Log.d("lifecycle", "im in onResume of MM, playMusic " + playMusic);
         continueBGMusic = false;
         playMusic = loadMusic();
         doBindService();
