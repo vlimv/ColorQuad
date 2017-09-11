@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="black_overlay">#66000000</color>
+    <color name="dark">#212121</color>
 
     <color name="sunny">#ffff00</color>
     <color name="pochti_white">#d3d3d3</color>
@@ -14,12 +12,10 @@
     <color name="yellow">#ffff00</color>
     <color name="blue">#3772ff</color>
 
-    <color name="pressed_yellow">#ffcc00</color>
     <color name="orange">#ff6600</color>
     <color name="purple">#9900cc</color>
     <color name="green">#00ff00</color>
     <color name="pink">#ff0066</color>
-    <color name="pressed_pink">#ff0033</color>
     <color name="light_yellow">#ffff99</color>
     <color name="cyan">#00ccff</color>
     <color name="pressed_cyan">#00cccc</color>

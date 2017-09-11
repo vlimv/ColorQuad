@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">ColorQuad</string>
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_how_to">how_to</string>
     <string name="greeting">Hello!</string>
     <string name="intro">Let\'s have some introduction first. Do you know how to mix colors? Have a try with basic colors. For example, mix red and yellow to get orange.</string>
@@ -10,10 +8,9 @@
     <string name="ht_fragment2_t1">"Your goal is to paint outer sides of crosses, so addition of these colors will result central color."</string>
     <string name="ht_fragment2_t2">Tap outer squares to change their color.</string>
     <string name="ht_fragment2_t3">You are right!</string>
+    <string name="ht_fragment2_t4">You need to paint only two squares!</string>
     <string name="level0">"LEVEL 0"</string>
-    <string name="awesome">AWESOME</string>
     <string name="quit">DO YOU REALLY WANT TO QUIT?</string>
-    <string name="quit_to_menu">DO YOU REALLY WANT TO GO BACK TO MAIN MENU?</string>
     <string name="ht_fragment3_t1">Try to solve this one colouring as few squares as possible. If you forget how to mix specific color, long press it and hint will appear ;) </string>
     <string name="ht_fragment3_t2">Well played! I think you are ready to begin... </string>
     <string name="swipe_to_cont">Swipe right to continue... </string>
@@ -24,7 +21,6 @@
     <string name="text_level_36">Are you ready for a new level? >:D</string>
     <string name="text_level_66">Squares... Squares everywhere O_O</string>
     <string name="text_level_85">This one is easy. I swear :D</string>
-    <string name="text_level_91">Light brown? This might be interesting...</string>
     <string name="last_level">Sadly, it was the last level...</string>
     <string name="one_star_text1">Not so bad.</string>
     <string name="one_star_text2">I believe in you :*</string>
@@ -42,6 +38,10 @@
     <string name="three_star_text4">Oh my square! You did it!</string>
     <string name="three_star_text5">Squaretastic!</string>
     <string name="title_activity_choose_level">ChooseLevel</string>
+    <string name="rate_app">I do not insist, but if you enjoy playing ColorQuad, please take a moment to rate it. Thanks for your support!</string>
+    <string name="yes">rate</string>
+    <string name="no">never</string>
+    <string name="later">later</string>
     <string name="level">Level</string>
     <string name="font">font:</string>
     <string name="music">music:</string>

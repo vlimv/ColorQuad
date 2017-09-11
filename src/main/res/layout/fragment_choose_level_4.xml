@@ -26,7 +26,7 @@
         android:layout_marginTop="3dp"
         android:src="@drawable/home"
         android:adjustViewBounds="true"
-        android:background="@color/cyan"
+        android:background="@color/yellow"
         android:scaleType="fitCenter"/>
 
     <TableLayout
@@ -43,67 +43,67 @@
             <Button
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:text="81"
-                android:id="@+id/level_81"
+                android:text="121"
+                android:id="@+id/level_121"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:text="82"
-                android:id="@+id/level_82"
+                android:text="122"
+                android:id="@+id/level_122"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:text="83"
-                android:id="@+id/level_83"
+                android:text="123"
+                android:id="@+id/level_123"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:text="84"
-                android:id="@+id/level_84"
+                android:text="124"
+                android:id="@+id/level_124"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:text="85"
-                android:id="@+id/level_85"
+                android:text="125"
+                android:id="@+id/level_125"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink" />
+                android:textColor="@color/orange" />
         </TableRow>
 
         <TableRow
@@ -113,67 +113,67 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="86"
-                android:id="@+id/level_86"
+                android:text="126"
+                android:id="@+id/level_126"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="87"
-                android:id="@+id/level_87"
+                android:text="127"
+                android:id="@+id/level_127"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="88"
-                android:id="@+id/level_88"
+                android:text="128"
+                android:id="@+id/level_128"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="89"
-                android:id="@+id/level_89"
+                android:text="129"
+                android:id="@+id/level_129"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="90"
-                android:id="@+id/level_90"
+                android:text="130"
+                android:id="@+id/level_130"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink" />
+                android:textColor="@color/orange" />
         </TableRow>
 
         <TableRow
@@ -183,67 +183,67 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="91"
-                android:id="@+id/level_91"
+                android:text="131"
+                android:id="@+id/level_131"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="92"
-                android:id="@+id/level_92"
+                android:text="132"
+                android:id="@+id/level_132"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="93"
-                android:id="@+id/level_93"
+                android:text="133"
+                android:id="@+id/level_133"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="94"
-                android:id="@+id/level_94"
+                android:text="134"
+                android:id="@+id/level_134"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="95"
-                android:id="@+id/level_95"
+                android:text="135"
+                android:id="@+id/level_135"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink" />
+                android:textColor="@color/orange" />
         </TableRow>
 
         <TableRow
@@ -253,67 +253,67 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="96"
-                android:id="@+id/level_96"
+                android:text="136"
+                android:id="@+id/level_136"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="97"
-                android:id="@+id/level_97"
+                android:text="137"
+                android:id="@+id/level_137"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="98"
-                android:id="@+id/level_98"
+                android:text="138"
+                android:id="@+id/level_138"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="99"
-                android:id="@+id/level_99"
+                android:text="139"
+                android:id="@+id/level_139"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="100"
-                android:id="@+id/level_100"
+                android:text="140"
+                android:id="@+id/level_140"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink" />
+                android:textColor="@color/orange" />
         </TableRow>
 
         <TableRow
@@ -323,67 +323,67 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="101"
-                android:id="@+id/level_101"
+                android:text="141"
+                android:id="@+id/level_141"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="102"
-                android:id="@+id/level_102"
+                android:text="142"
+                android:id="@+id/level_142"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="103"
-                android:id="@+id/level_103"
+                android:text="143"
+                android:id="@+id/level_143"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="104"
-                android:id="@+id/level_104"
+                android:text="144"
+                android:id="@+id/level_144"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="105"
-                android:id="@+id/level_105"
+                android:text="145"
+                android:id="@+id/level_145"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink" />
+                android:textColor="@color/orange" />
         </TableRow>
 
         <TableRow
@@ -393,67 +393,67 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="106"
-                android:id="@+id/level_106"
+                android:text="146"
+                android:id="@+id/level_146"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="107"
-                android:id="@+id/level_107"
+                android:text="147"
+                android:id="@+id/level_147"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="108"
-                android:id="@+id/level_108"
+                android:text="148"
+                android:id="@+id/level_148"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="109"
-                android:id="@+id/level_109"
+                android:text="149"
+                android:id="@+id/level_149"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="110"
-                android:id="@+id/level_110"
+                android:text="150"
+                android:id="@+id/level_150"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink" />
+                android:textColor="@color/orange" />
         </TableRow>
 
         <TableRow
@@ -463,67 +463,67 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="111"
-                android:id="@+id/level_111"
+                android:text="151"
+                android:id="@+id/level_151"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="112"
-                android:id="@+id/level_112"
+                android:text="152"
+                android:id="@+id/level_152"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="113"
-                android:id="@+id/level_113"
+                android:text="153"
+                android:id="@+id/level_153"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="114"
-                android:id="@+id/level_114"
+                android:text="154"
+                android:id="@+id/level_154"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="115"
-                android:id="@+id/level_115"
+                android:text="155"
+                android:id="@+id/level_155"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink" />
+                android:textColor="@color/orange" />
         </TableRow>
 
         <TableRow
@@ -533,67 +533,67 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="116"
-                android:id="@+id/level_116"
+                android:text="156"
+                android:id="@+id/level_156"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="117"
-                android:id="@+id/level_117"
+                android:text="157"
+                android:id="@+id/level_157"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="118"
-                android:id="@+id/level_118"
+                android:text="158"
+                android:id="@+id/level_158"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="119"
-                android:id="@+id/level_119"
+                android:text="159"
+                android:id="@+id/level_159"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/orange"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="120"
-                android:id="@+id/level_120"
+                android:text="160"
+                android:id="@+id/level_160"
                 android:textSize="30sp"
                 android:background="@drawable/rectangle"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/pink" />
+                android:textColor="@color/orange" />
         </TableRow>
     </TableLayout>
 </RelativeLayout>

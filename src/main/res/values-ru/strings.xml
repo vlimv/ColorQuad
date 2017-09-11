@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">ColorQuad</string>
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_how_to">how_to</string>
     <string name="greeting">Привет!</string>
     <string name="intro">Давай начнем со вступления. Знаешь ли ты как смешивать цвета? Попробуй с базовыми цветами. К примеру, Смешай красный и желтый чтобы получить оранжевый.</string>
@@ -10,10 +8,9 @@
     <string name="ht_fragment2_t1">"Твоя цель - это раскрасить внешние стороны креста так, чтобы результатом соединения этих цветов являлся цвет посередине."</string>
     <string name="ht_fragment2_t2">Нажми на внешние квадраты чтобы изменить их цвет.</string>
     <string name="ht_fragment2_t3">Правильно!</string>
+    <string name="ht_fragment2_t4">Тебе нужно закрасить только два квадрата!</string>
     <string name="level0">"Уровень 0"</string>
-    <string name="awesome">Прекрасно</string>
     <string name="quit">Ты действительно хочешь выйти?</string>
-    <string name="quit_to_menu">Ты действительно хочешь вернуться в меню?</string>
     <string name="ht_fragment3_t1">Постарайся решить этот паззл, закрашивая как можно меньше квадратов. Если ты забудешь как получить определенный цвет, зажми его и ты увидишь подсказку ;) </string>
     <string name="ht_fragment3_t2">Отлично сыграно! Я думаю ты готов начать... </string>
     <string name="swipe_to_cont">Смахни чтобы продолжить... </string>
@@ -24,7 +21,6 @@
     <string name="text_level_36">Ты готов к новому уровню? >:D</string>
     <string name="text_level_66">Квадраты... Везде квадраты O_O</string>
     <string name="text_level_85">Этот уровень легкий. Я клянусь :D</string>
-    <string name="text_level_91">Light brown? This might be interesting...</string>
     <string name="last_level">К сожалению, это был последний уровень :(</string>
     <string name="one_star_text1">Не так плохо.</string>
     <string name="one_star_text2">Я в тебя верю :*</string>
@@ -42,6 +38,10 @@
     <string name="three_star_text4">О, мой квадрат! Ты сделал это!</string>
     <string name="three_star_text5">Неверквадратно!</string>
     <string name="title_activity_choose_level">ChooseLevel</string>
+    <string name="rate_app">Я не настаиваю, но если тебе нравится игра, пожалуйста оцени ее. Спасибо за твою поддержку!</string>
+    <string name="yes">оценить</string>
+    <string name="no">нет</string>
+    <string name="later">позже</string>
     <string name="level">Уровень</string>
     <string name="font">шрифт:</string>
     <string name="music">музыка:</string>
